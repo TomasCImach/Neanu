@@ -1,0 +1,26 @@
+{
+  "name": "Naenu",
+  "symbol": "NAENU",
+  "description": "My Cube",
+  "image": "https://arweave.net/U6PeBGoTJtcIHf5zZ9Fpb367dcf-AZ4qgZ6qKnt4dss?ext=png",
+  "attributes": [{
+    "trait_type": "Distance",
+    "value": "42k"
+  }, {
+    "trait_type": "Time",
+    "value": "2:01:39"
+  }, {
+    "trait_type": "Race",
+    "value": "Berlin Marathon"
+  }],
+  "properties": {
+    "files": [{
+      "uri": "https://arweave.net/U6PeBGoTJtcIHf5zZ9Fpb367dcf-AZ4qgZ6qKnt4dss?ext=png",
+      "type": "image/png"
+    }],
+    "creators": [{
+      "address": "3ovb57bNSkKEwwvektFK4YFFe4tUN3wx4C8hiWqycLRy",
+      "share": 100
+    }]
+  }
+}

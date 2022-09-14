@@ -1,0 +1,29 @@
+{
+  "name": "SOME",
+  "symbol": "SNFT",
+  "image": "1.png",
+  "description": "SCIENCE NFTs",
+  "attributes": [{
+      "trait_type": "accessory",
+      "value": "point"
+    },
+    {
+      "trait_type": "chair",
+      "value": "blue"
+    },
+    {
+      "trait_type": "books",
+      "value": "white"
+    }
+  ],
+  "properties": {
+    "files": [{
+      "uri": "1.png",
+      "type": "image/png"
+    }],
+    "creators": [{
+      "address": "3ovb57bNSkKEwwvektFK4YFFe4tUN3wx4C8hiWqycLRy",
+      "share": 100
+    }]
+  }
+}

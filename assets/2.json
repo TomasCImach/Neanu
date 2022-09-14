@@ -1,0 +1,29 @@
+{
+  "name": "OTHER",
+  "symbol": "SNFT",
+  "image": "2.png",
+  "description": "SCIENCE NFTs",
+  "attributes": [{
+      "trait_type": "accessory",
+      "value": "baston"
+    },
+    {
+      "trait_type": "chair",
+      "value": "black"
+    },
+    {
+      "trait_type": "books",
+      "value": "yellow"
+    }
+  ],
+  "properties": {
+    "files": [{
+      "uri": "2.png",
+      "type": "image/png"
+    }],
+    "creators": [{
+      "address": "3ovb57bNSkKEwwvektFK4YFFe4tUN3wx4C8hiWqycLRy",
+      "share": 100
+    }]
+  }
+}

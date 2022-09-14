@@ -1,0 +1,47 @@
+{
+  "name": "candy-drop",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@metaplex-foundation/js": "^0.15.0",
+    "@metaplex/js": "4.12.0",
+    "@project-serum/anchor": "0.18.2",
+    "@solana/wallet-adapter-base": "^0.9.7",
+    "@solana/web3.js": "^1.30.2",
+    "dotenv": "^16.0.1",
+    "react": "17.0.1",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "17.0.1",
+    "react-scripts": "4.0.3"
+  },
+  "scripts": {
+    "start": "CHOKIDAR_USEPOLLING=true react-app-rewired start",
+    "build": "CI=false && react-app-rewired build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+  },
+  "overrides": {
+    "react-error-overlay": "6.0.9"
+  },
+  "browserslist": {
+    "production": [
+      "chrome >= 67",
+     "edge >= 79",
+     "firefox >= 68",
+     "opera >= 54",
+     "safari >= 14"
+    ],
+    "development": [
+      "defaults"
+    ]
+  }
+}

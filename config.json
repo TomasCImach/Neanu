@@ -1,0 +1,35 @@
+{
+  "price": 0.0,
+  "number": 50000,
+  "gatekeeper": null,
+  "creators": [
+    {
+      "address": "3ovb57bNSkKEwwvektFK4YFFe4tUN3wx4C8hiWqycLRy",
+      "share": 100
+    }
+  ],
+  "solTreasuryAccount": "3ovb57bNSkKEwwvektFK4YFFe4tUN3wx4C8hiWqycLRy",
+  "splTokenAccount": null,
+  "splToken": null,
+  "goLiveDate": "3022-09-09T01:02:55.451000200+00:00",
+  "endSettings": null,
+  "whitelistMintSettings": {
+    "mode": "neverBurn",
+    "mint": "4aRRRXiqcfTyFJoSJpiSUo8sge3u1cQb4BZKHLgvuqYE",
+    "presale": true,
+    "discountPrice": null
+  },
+  "hiddenSettings": {
+    "name": "Naenu App",
+    "uri": "https://arweave.net/NEz-ZsJIkLr3ymyjciXASi8vu63BzzEzX8kaMjf-kZc",
+    "hash": "7RTtShwKnTAU94WuRczjX2rSoMmB4noc"
+  },
+  "uploadMethod": "bundlr",
+  "retainAuthority": true,
+  "isMutable": true,
+  "symbol": "ISWNFT",
+  "sellerFeeBasisPoints": 0,
+  "awsConfig": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null
+}
