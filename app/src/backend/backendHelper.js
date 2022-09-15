@@ -469,5 +469,6 @@ module.exports = {
     updateMetadata,
     originalMetadata,
     createCache,
-    mintToken
+    mintToken,
+    getNft
 };
