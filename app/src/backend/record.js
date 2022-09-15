@@ -20,6 +20,10 @@ recordRoutes.route("/mintToken").get(async function (req, res) {
         res.status(401).send('unauthorized');
     }
 
+    if (req.body) {
+        res.json(req.body)
+    }
+
     let result = req.query
     console.log("body", req);
     res.json(result)
