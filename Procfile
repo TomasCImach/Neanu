@@ -1,1 +1,1 @@
-web:node node app/src/backend/api.js
+web:npm start
