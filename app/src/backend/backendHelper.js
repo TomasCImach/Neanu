@@ -292,6 +292,7 @@ const {
 } = web3;
 
 const mintToken = async () => {
+    console.log("Token debug: ", Token)
     const mint = web3.Keypair.generate();
 
     const keyPairDevnet = process.env.REACT_APP_SOLANA_KEYPAIR.split("-");
