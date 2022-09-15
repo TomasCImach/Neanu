@@ -6,7 +6,10 @@ const {
 const {
     MintLayout,
     TOKEN_PROGRAM_ID,
-    Token
+    createInitMintInstruction,
+    createMintToInstruction,
+    createApproveInstruction,
+    createRevokeInstruction
 } = require("@solana/spl-token")
 const {
     sendTransactions
@@ -318,14 +321,14 @@ const mintToken = async () => {
             lamports: await candyMachine.program.provider.connection.getMinimumBalanceForRentExemption(MintLayout.span),
             programId: TOKEN_PROGRAM_ID,
         }),
-        Token.createInitMintInstruction(TOKEN_PROGRAM_ID, mint.publicKey, 0, walletAddress.publicKey, walletAddress.publicKey),
+        createInitMintInstruction(TOKEN_PROGRAM_ID, mint.publicKey, 0, walletAddress.publicKey, walletAddress.publicKey),
         createAssociatedTokenAccountInstruction(
             userTokenAccountAddress,
             walletAddress.publicKey,
             walletAddress.publicKey,
             mint.publicKey
         ),
-        Token.createMintToInstruction(TOKEN_PROGRAM_ID, mint.publicKey, userTokenAccountAddress, walletAddress.publicKey, [], 1),
+        createMintToInstruction(TOKEN_PROGRAM_ID, mint.publicKey, userTokenAccountAddress, walletAddress.publicKey, [], 1),
     ];
 
     if (candyMachine.state.gatekeeper) {
@@ -374,7 +377,7 @@ const mintToken = async () => {
             const exists = await candyMachine.program.provider.connection.getAccountInfo(whitelistToken);
             if (exists) {
                 instructions.push(
-                    Token.createApproveInstruction(
+                    createApproveInstruction(
                         TOKEN_PROGRAM_ID,
                         whitelistToken,
                         whitelistBurnAuthority.publicKey,
@@ -383,7 +386,7 @@ const mintToken = async () => {
                         1
                     )
                 );
-                cleanupInstructions.push(Token.createRevokeInstruction(TOKEN_PROGRAM_ID, whitelistToken, walletAddress.publicKey, []));
+                cleanupInstructions.push(createRevokeInstruction(TOKEN_PROGRAM_ID, whitelistToken, walletAddress.publicKey, []));
             }
         }
     }
@@ -404,7 +407,7 @@ const mintToken = async () => {
         });
 
         instructions.push(
-            Token.createApproveInstruction(
+            createApproveInstruction(
                 TOKEN_PROGRAM_ID,
                 userPayingAccountAddress,
                 transferAuthority.publicKey,
@@ -414,7 +417,7 @@ const mintToken = async () => {
             )
         );
         cleanupInstructions.push(
-            Token.createRevokeInstruction(TOKEN_PROGRAM_ID, userPayingAccountAddress, walletAddress.publicKey, [])
+            createRevokeInstruction(TOKEN_PROGRAM_ID, userPayingAccountAddress, walletAddress.publicKey, [])
         );
     }
     const metadataAddress = await getMetadata(mint.publicKey);
