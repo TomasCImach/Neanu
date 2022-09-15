@@ -3,6 +3,9 @@ require("dotenv").config();
 const {
     getNft
 } = require('./backendHelper')
+const {
+    mintAndUpdate
+} = require('./main')
 
 const apiKeys = [
     '29df7ed6c340e52066fbe1f3d0d3505019863bc6'
@@ -21,7 +24,8 @@ recordRoutes.route("/mintToken").get(async function (req, res) {
     }
 
     if (req.body !== {}) {
-        return res.json(req.body)
+        const newNftAddress = mintAndUpdate(req.body)
+        return res.json({newNftAddress: newNftAddress})
     }
 
     let result = req.query
