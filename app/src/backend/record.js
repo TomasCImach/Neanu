@@ -14,7 +14,7 @@ const recordRoutes = express.Router();
 
 // This section will help you get a list of all the documents.
 recordRoutes.route("/mintToken").get(async function (req, res) {
-    if (apiKeys.includes(req.body.apiKey)) {
+    if (apiKeys.includes(req.query.apiKey)) {
         // Authorize access
     } else {
         res.status(401).send('unauthorized');
