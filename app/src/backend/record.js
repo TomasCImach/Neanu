@@ -17,17 +17,16 @@ recordRoutes.route("/mintToken").get(async function (req, res) {
     if (apiKeys.includes(req.query.apiKey)) {
         // Authorize access
     } else {
-        res.status(401).send('unauthorized');
+        return res.status(401).send('unauthorized');
     }
 
     if (req.body) {
-        res.json(req.body)
+        return res.json(req.body)
     }
 
     let result = req.query
     console.log("body", req);
-    res.json(result)
-
+    return res.json(result)
 });
 
 recordRoutes.route("/getNft").get(async function (req, res) {
