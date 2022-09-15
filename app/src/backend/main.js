@@ -22,7 +22,9 @@ async function mintAndUpdate(metadata) {
     //         "value": "new lamp"
     //     }]
     // }
-    const newMetadata = JSON.parse(metadata)
+    // const newMetadata = JSON.parse(metadata)
+    console.log("metadata", metadata)
+    const newMetadata = metadata
     const mint = await mintToken()
     console.log("mint result: ", mint.txId.length === 0 ? mint.txId[0] : mint.txId, "mint address: ", mint.mint.toString())
 
