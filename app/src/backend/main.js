@@ -13,7 +13,7 @@ const {
 require('dotenv').config();
 
 
-async function mintAndUpdate(newMetadata) {
+async function mintAndUpdate(metadata) {
     // const newMetadata = {
     //     name: "New Newton",
     //     description: "My Updated SCIENCE NFTs",
@@ -22,6 +22,7 @@ async function mintAndUpdate(newMetadata) {
     //         "value": "new lamp"
     //     }]
     // }
+    const newMetadata = JSON.parse(metadata)
     const mint = await mintToken()
     console.log("mint result: ", mint.txId.length === 0 ? mint.txId[0] : mint.txId, "mint address: ", mint.mint.toString())
 
