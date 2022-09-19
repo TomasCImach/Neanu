@@ -64,8 +64,6 @@ const getNft = async (nftAddress) => {
     const nft = await metaplex.nfts().findByMint({
         mintAddress
     }).run();
-
-    console.log("mint.json", nft.json);
     return nft;
 };
 
@@ -95,15 +93,6 @@ const updateMetadata = async (nftAddress, newMetadata) => {
 const originalMetadata = async (nftAddress) => {
     const metaplex = getMetaplex();
     const nft = await getNft(nftAddress);
-
-    // const {
-    //     uri: newUri
-    // } = await metaplex
-    //     .nfts()
-    //     .uploadMetadata(json0)
-    //     .run();
-
-    // console.log("newUri", newUri)
     const {
         nft: updatedNft
     } = await metaplex
@@ -140,6 +129,21 @@ const createCache = () => {
         },
         "items": items
     }, null, 2));
+}
+
+const waitTxIsFinalized = async (connection, txHash) => {
+    while (true) {
+        const result = await connection.getSignatureStatus(
+            txHash,
+            {
+                searchTransactionHistory: true,
+            }
+        )
+        if (result.value.confirmationStatus === 'finalized') {
+            console.log("transcation ", txHash," finalized")
+            return
+        }
+    }
 }
 
 const opts = {
@@ -183,14 +187,14 @@ const getCandyMachineState = async () => {
     const goLiveDateTimeString = `${new Date(goLiveData * 1000).toLocaleDateString()} @ ${new Date(
         goLiveData * 1000
     ).toLocaleTimeString()}`;
-    console.log({
-        itemsAvailable,
-        itemsRedeemed,
-        itemsRemaining,
-        goLiveData,
-        goLiveDateTimeString,
-        presale,
-    });
+    // console.log({
+    //     itemsAvailable,
+    //     itemsRedeemed,
+    //     itemsRemaining,
+    //     goLiveData,
+    //     goLiveDateTimeString,
+    //     presale,
+    // });
     return ({
         id: process.env.REACT_APP_CANDY_MACHINE_ID,
         program,
@@ -301,7 +305,6 @@ const mintToken = async () => {
 
     const userTokenAccountAddress = (await getAtaForMint(mint.publicKey, walletAddress.publicKey))[0];
 
-    console.log("candyMachine", candyMachine)
     const userPayingAccountAddress = candyMachine.state.tokenMint ?
         (await getAtaForMint(candyMachine.state.tokenMint, walletAddress.publicKey))[0] :
         walletAddress.publicKey;
@@ -470,5 +473,6 @@ module.exports = {
     originalMetadata,
     createCache,
     mintToken,
-    getNft
+    getNft,
+    waitTxIsFinalized
 };

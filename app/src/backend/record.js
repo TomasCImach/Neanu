@@ -25,7 +25,7 @@ recordRoutes.route("/mintToken").get(async function (req, res) {
 
     if (req.body !== {}) {
         const newNftAddress = await mintAndUpdate(req.body)
-        return res.json({newNftAddress: newNftAddress})
+        return newNftAddress ? res.json({newNftAddress: newNftAddress}) : res.status(500).send('An error has ocurred minting and updating the NFT')
     }
 
     let result = req.query

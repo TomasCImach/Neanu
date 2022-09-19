@@ -2,7 +2,9 @@ const {
     updateMetadata,
     originalMetadata,
     createCache,
-    mintToken
+    mintToken,
+    waitTxIsFinalized,
+    getNft
 } = require("./backendHelper")
 
 const {
@@ -14,15 +16,6 @@ require('dotenv').config();
 
 
 async function mintAndUpdate(metadata) {
-    // const newMetadata = {
-    //     name: "New Newton",
-    //     description: "My Updated SCIENCE NFTs",
-    //     attributes: [{
-    //         "trait_type": "accessory",
-    //         "value": "new lamp"
-    //     }]
-    // }
-    // const newMetadata = JSON.parse(metadata)
     console.log("metadata", metadata)
     const newMetadata = metadata
     const mint = await mintToken()
@@ -30,24 +23,21 @@ async function mintAndUpdate(metadata) {
 
     const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
     const connection = new Connection(rpcHost);
+    await waitTxIsFinalized(connection, mint.txId[0])
 
-
-    while (true) {
-        const result = await connection.getSignatureStatus(
-            mint.txId[0],
-            {
-                searchTransactionHistory: true,
-            }
-        )
-        if (result.value.confirmationStatus === 'finalized') {
-            console.log("transcation finalized")
-            break
-        }
-    }
     const updateResponse = await updateMetadata(mint.mint.toString(), newMetadata)
+    const updateTxHash = updateResponse.response.signature
     console.log("update response: ", updateResponse)
+    await waitTxIsFinalized(connection, updateTxHash)
 
-    return mint.mint.toString()
+    const nftData = await getNft(mint.mint.toString())
+    if (nftData.json === metadata){
+        console.log("successfully minted and updated ", mint.mint.toString())
+        return mint.mint.toString()
+    } else {
+        console.log("an error has ocurred updating ", nftData)
+        return false
+    }
 }
 
 module.exports = {
