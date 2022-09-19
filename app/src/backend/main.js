@@ -31,11 +31,11 @@ async function mintAndUpdate(metadata) {
     await waitTxIsFinalized(connection, updateTxHash)
 
     const nftData = await getNft(mint.mint.toString())
-    if (nftData.json === metadata){
+    if (JSON.stringify(nftData.json) === JSON.stringify(metadata)){
         console.log("successfully minted and updated ", mint.mint.toString())
         return mint.mint.toString()
     } else {
-        console.log("an error has ocurred updating ", nftData)
+        console.log("an error has ocurred updating ", nftData.json, metadata)
         return false
     }
 }
